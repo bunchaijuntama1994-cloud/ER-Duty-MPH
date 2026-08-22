@@ -139,7 +139,32 @@ const records=getRecords();
 const totalRecords=records.length;
 
 const totalHours=records.reduce(
+// ชั่วโมงแยกตามเวร
+const morningHours = records
+  .filter(r => r.shift === "เช้า")
+  .reduce((sum,r)=>sum+Number(r.hours||0),0);
 
+const afternoonHours = records
+  .filter(r => r.shift === "บ่าย")
+  .reduce((sum,r)=>sum+Number(r.hours||0),0);
+
+const nightHours = records
+  .filter(r => r.shift === "ดึก")
+  .reduce((sum,r)=>sum+Number(r.hours||0),0);
+
+// Top 5 บุคลากร
+const staffSummary = {};
+
+records.forEach(r=>{
+  if(!r.staff) return;
+  staffSummary[r.staff]=(staffSummary[r.staff]||0)+Number(r.hours||0);
+});
+
+const topStaff = Object.entries(staffSummary)
+  .sort((a,b)=>b[1]-a[1])
+  .slice(0,5)
+  .map(([name,hours])=>({name,hours}));
+   
 (sum,r)=>sum+Number(r.hours||0),
 
 0
@@ -156,15 +181,16 @@ const totalRefer = records.filter(
 ).length;
 
 return{
+  totalRecords,
+  totalHours,
+  totalEMS,
+  totalRefer,
 
-totalRecords,
+  morningHours,
+  afternoonHours,
+  nightHours,
 
-totalHours,
-
-totalEMS,
-
-totalRefer
-
+  topStaff
 };
 
 }
