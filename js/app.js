@@ -58,6 +58,33 @@ function refreshDashboard(){
   document.getElementById("totalEMS").textContent=dash.totalEMS;
   document.getElementById("totalRefer").textContent=dash.totalRefer;
 
+document.getElementById("morningHours").textContent =
+  `${dash.morningHours} ชม.`;
+
+document.getElementById("afternoonHours").textContent =
+  `${dash.afternoonHours} ชม.`;
+
+document.getElementById("nightHours").textContent =
+  `${dash.nightHours} ชม.`;
+
+// ===== Top Staff =====
+const topList = document.getElementById("topStaffList");
+
+if (topList) {
+  topList.innerHTML = "";
+
+  if (dash.topStaff.length === 0) {
+    topList.innerHTML = "<div>ยังไม่มีข้อมูล</div>";
+  } else {
+    dash.topStaff.forEach((item, i) => {
+      topList.innerHTML += `
+        <div class="topstaff-item">
+          <span class="topstaff-rank">#${i + 1} ${item.name}</span>
+          <span class="topstaff-hours">${item.hours} ชม.</span>
+        </div>`;
+    });
+  }
+}   
 }
 
 /* ---------------- Form ---------------- */
