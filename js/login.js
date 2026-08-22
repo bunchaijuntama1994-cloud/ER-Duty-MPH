@@ -87,9 +87,10 @@ document.getElementById("currentUser").textContent = user.value;
 
     pin.value="";
 
-    if(typeof refreshDashboard==="function"){
-
-        refreshDashboard();
+    if(typeof refreshDashboard==="function") refreshDashboard();
+if(typeof renderSummary==="function") renderSummary();
+if(typeof renderPrintTable==="function") renderPrintTable();
+if(typeof clearForm==="function") clearForm();
 
     }
 
@@ -101,4 +102,8 @@ function logout(){
   document.getElementById("loginScreen").classList.remove("hidden");
 
   sessionStorage.removeItem("currentUser");
+
+  if(typeof renderSummary==="function") renderSummary();
+  if(typeof renderPrintTable==="function") renderPrintTable();
+  if(typeof clearForm==="function") clearForm();
 }
