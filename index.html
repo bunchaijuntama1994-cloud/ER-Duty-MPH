@@ -399,7 +399,43 @@ placeholder="เช่น อุบัติเหตุรถจักรยา
 <input id="hourValue" type="hidden" value="2">
 
 </section>
+<!-- เวลา -->
+<section id="timeSection" class="form-section">
 
+  <h3><i class="fa-solid fa-clock"></i> เวลาปฏิบัติหน้าที่</h3>
+
+  <div class="time-group">
+
+    <input id="timeStart" type="time">
+
+    <div class="time-arrow">
+      <i class="fa-solid fa-arrow-right"></i>
+    </div>
+
+    <input id="timeEnd" type="time">
+
+  </div>
+
+</section>
+
+<!-- ชั่วโมง -->
+<section id="hourSection" class="form-section">
+
+  <h3><i class="fa-solid fa-hourglass-half"></i> จำนวนชั่วโมง</h3>
+
+  <div class="hour-group">
+
+    <button type="button" class="hour-btn active" data-hour="2">2 ชม.</button>
+
+    <button type="button" class="hour-btn" data-hour="4">4 ชม.</button>
+
+    <button type="button" class="hour-btn" data-hour="8">8 ชม.</button>
+
+  </div>
+
+  <input type="hidden" id="hourValue" value="2">
+
+</section>     
 <!-- Shift -->
 
 <section class="form-section">
