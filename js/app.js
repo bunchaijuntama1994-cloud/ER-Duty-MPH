@@ -333,9 +333,9 @@ async function saveForm(e){
 
     supervisor:document.getElementById("supervisorSelect").value,
 
-    standby:
-      document.getElementById("emsDetail").value.trim()!==""?"EMS":
-      document.getElementById("referDx").value.trim()!==""?"Refer":""
+    standby: ["EMS","Refer"].includes(record.dutyType)
+  ? record.dutyType
+  : ""
 
   };
 
