@@ -22,14 +22,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function initNavigation(){
 
-  // แสดง Dashboard เป็นหน้าแรก
-  document.querySelectorAll(".page").forEach(p => {
-    if (p.id === "dashboardPage") {
-      p.classList.remove("hidden");
-    } else {
-      p.classList.add("hidden");
-    }
-  });
+// เริ่มต้นแสดงหน้าบันทึกข้อมูล
+document.querySelectorAll(".page").forEach(p => {
+  p.classList.add("hidden");
+});
+
+const defaultPage = document.getElementById("formPage");
+if (defaultPage) {
+  defaultPage.classList.remove("hidden");
+}
 
   document.querySelectorAll(".nav-btn").forEach(btn => {
 
