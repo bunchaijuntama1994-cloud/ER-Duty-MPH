@@ -305,17 +305,18 @@ function initSmartOT(){
 
 async function saveForm(e){
 
-  e.preventDefault();
+e.preventDefault();
 
-  const record={
+const dutyType = document.getElementById("dutyType").value;
 
+const record = {
     date:document.getElementById("dutyDate").value,
 
     staff:
       document.getElementById("staffOther").value ||
       document.getElementById("staffSelect").value,
 
-    dutyType:document.getElementById("dutyType").value,
+    dutyType: dutyType,
 
     ems:document.getElementById("emsDetail").value,
 
@@ -333,8 +334,8 @@ async function saveForm(e){
 
     supervisor:document.getElementById("supervisorSelect").value,
 
-    standby: ["EMS","Refer"].includes(record.dutyType)
-  ? record.dutyType
+    standby: ["EMS","Refer"].includes(dutyType)
+  ? dutyType
   : ""
 
   };
