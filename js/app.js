@@ -502,7 +502,13 @@ function renderPrintTable(){
       </tr>`;
 
   });
+const latest = records[0];
 
+document.getElementById("printStaffName").textContent =
+    latest?.staff || "ผู้ปฏิบัติงาน";
+
+document.getElementById("printSupervisorName").textContent =
+    latest?.supervisor || "หัวหน้าเวร";
 }
 let shiftChart = null;
 let emsChart = null;
