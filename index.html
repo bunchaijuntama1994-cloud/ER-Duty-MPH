@@ -1,311 +1,692 @@
+
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ER Duty MPH</title>
 
-  <meta name="theme-color" content="#0EA5E9">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<title>ER Duty MPH</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#0EA5E9">
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/login.css">
-  <link rel="stylesheet" href="css/dashboard.css">
-  <link rel="stylesheet" href="css/form.css">
-  <link rel="stylesheet" href="css/summary.css">
-  <link rel="stylesheet" href="css/print.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/login.css">
+<link rel="stylesheet" href="css/dashboard.css">
+<link rel="stylesheet" href="css/form.css">
+<link rel="stylesheet" href="css/summary.css">
+<link rel="stylesheet" href="css/print.css">
+
 </head>
 
 <body>
 
-<!-- =========================
-     LOGIN
-========================= -->
+<!-- =====================================================
+     LOGIN SCREEN
+===================================================== -->
 
 <section id="loginScreen" class="login-screen">
 
-  <div class="login-card">
+<div class="login-card">
 
-    <div class="logo-circle">
-      <i class="fa-solid fa-truck-medical"></i>
-    </div>
+<div class="logo-circle">
 
-    <h1>ER Duty MPH</h1>
-
-    <p>
-      ระบบบันทึกการปฏิบัติหน้าที่
-      <br>
-      หน่วยงานอุบัติเหตุฉุกเฉินและนิติเวช
-      <br>
-      โรงพยาบาลเมืองปาน
-    </p>
-
-    <div class="input-group">
-
-      <label>ผู้ใช้งาน</label>
-
-      <select id="loginUser"></select>
-
-    </div>
-
-    <div class="input-group">
-
-      <label>PIN</label>
-
-      <input
-        id="loginPin"
-        type="password"
-        placeholder="11157">
-
-    </div>
-
-    <button id="loginBtn" class="primary-btn">
-
-      <i class="fa-solid fa-right-to-bracket"></i>
-
-      เข้าสู่ระบบ
-
-    </button>
-
-  </div>
-
-</section>
-
-<!-- =========================
-     APP
-========================= -->
-
-<div id="appContainer" class="app hidden">
-
-  <!-- Header -->
-
-  <header class="topbar">
-
-    <div class="top-left">
-
-      <i class="fa-solid fa-truck-medical"></i>
-
-      <div>
-
-        <h2>ER Duty MPH</h2>
-
-        <span>โรงพยาบาลเมืองปาน</span>
-
-      </div>
-
-    </div>
-
-    <div class="top-right">
-
-      <span id="currentUser"></span>
-
-      <button id="logoutBtn">
-
-        <i class="fa-solid fa-right-from-bracket"></i>
-
-      </button>
-
-    </div>
-
-  </header>
-
-  <!-- Dashboard -->
-
-  <section class="dashboard">
-
-    <div class="stat-card blue">
-
-      <i class="fa-solid fa-calendar-days"></i>
-
-      <h3 id="totalRecords">0</h3>
-
-      <span>รายการทั้งหมด</span>
-
-    </div>
-
-    <div class="stat-card green">
-
-      <i class="fa-solid fa-clock"></i>
-
-      <h3 id="totalHours">0</h3>
-
-      <span>ชั่วโมงรวม</span>
-
-    </div>
-
-    <div class="stat-card red">
-
-      <i class="fa-solid fa-ambulance"></i>
-
-      <h3 id="totalEMS">0</h3>
-
-      <span>EMS</span>
-
-    </div>
-
-    <div class="stat-card purple">
-
-      <i class="fa-solid fa-hospital-user"></i>
-
-      <h3 id="totalRefer">0</h3>
-
-      <span>Refer</span>
-
-    </div>
-
-  </section>
-
-  <!-- Navigation -->
-
-  <nav class="nav-menu">
-
-    <button class="nav-btn active" data-page="formPage">
-
-      <i class="fa-solid fa-file-circle-plus"></i>
-
-      บันทึกข้อมูล
-
-    </button>
-
-    <button class="nav-btn" data-page="summaryPage">
-
-      <i class="fa-solid fa-table"></i>
-
-      สรุปข้อมูล
-
-    </button>
-
-    <button class="nav-btn" data-page="exportPage">
-
-      <i class="fa-solid fa-file-pdf"></i>
-
-      Export PDF
-
-    </button>
-
-  </nav>
-
-  <!-- =========================
-       FORM PAGE
-  ========================= -->
-
-  <main id="formPage" class="page">
-
-    <div class="page-card">
-
-      <h2>
-
-        <i class="fa-solid fa-notes-medical"></i>
-
-        บันทึกการปฏิบัติหน้าที่
-
-      </h2>
-
-      <form id="dutyForm">
-
-        <!-- ส่วนนี้จะถูกเติมใน form.js -->
-
-        <div id="dynamicFormPlaceholder">
-
-          <div class="coming-soon">
-
-            <i class="fa-solid fa-pen-ruler"></i>
-
-            <h3>แบบฟอร์มกำลังเชื่อมต่อ</h3>
-
-            <p>Part 3 (form.js)</p>
-
-          </div>
-
-        </div>
-
-      </form>
-
-    </div>
-
-  </main>
-
-  <!-- =========================
-       SUMMARY PAGE
-  ========================= -->
-
-  <main id="summaryPage" class="page hidden">
-
-    <div class="page-card">
-
-      <h2>
-
-        <i class="fa-solid fa-table-list"></i>
-
-        สรุปข้อมูลการปฏิบัติหน้าที่
-
-      </h2>
-
-      <div id="summaryPlaceholder">
-
-        <div class="coming-soon">
-
-          <i class="fa-solid fa-chart-column"></i>
-
-          <h3>ตารางสรุป</h3>
-
-          <p>Part 5 (summary.js)</p>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </main>
-
-  <!-- =========================
-       EXPORT PAGE
-  ========================= -->
-
-  <main id="exportPage" class="page hidden">
-
-    <div class="page-card">
-
-      <h2>
-
-        <i class="fa-solid fa-file-pdf"></i>
-
-        Export รายงาน
-
-      </h2>
-
-      <div class="coming-soon">
-
-        <i class="fa-solid fa-print"></i>
-
-        <h3>PDF A4 Portrait</h3>
-
-        <p>Part 7 (export.js + PDF.html)</p>
-
-      </div>
-
-    </div>
-
-  </main>
+<i class="fa-solid fa-truck-medical"></i>
 
 </div>
 
-<!-- JS -->
+<h1>ER Duty MPH</h1>
+
+<p>
+
+ระบบบันทึกการปฏิบัติหน้าที่
+
+<br>
+
+หน่วยงานอุบัติเหตุฉุกเฉินและนิติเวช
+
+<br>
+
+โรงพยาบาลเมืองปาน
+
+</p>
+
+<div class="input-group">
+
+<label>
+
+<i class="fa-solid fa-user-nurse"></i>
+
+ผู้ปฏิบัติงาน
+
+</label>
+
+<select id="loginUser"></select>
+
+</div>
+
+<div class="input-group">
+
+<label>
+
+<i class="fa-solid fa-lock"></i>
+
+PIN
+
+</label>
+
+<input id="loginPin" type="password" placeholder="11157">
+
+</div>
+
+<button id="loginBtn" class="primary-btn">
+
+<i class="fa-solid fa-right-to-bracket"></i>
+
+เข้าสู่ระบบ
+
+</button>
+
+</div>
+
+</section>
+
+<!-- =====================================================
+     APPLICATION
+===================================================== -->
+
+<div id="appContainer" class="hidden">
+
+<header class="topbar">
+
+<div class="top-left">
+
+<i class="fa-solid fa-truck-medical"></i>
+
+<div>
+
+<h2>ER Duty MPH</h2>
+
+<span>หน่วยงานอุบัติเหตุฉุกเฉินและนิติเวช</span>
+
+</div>
+
+</div>
+
+<div class="top-right">
+
+<div id="currentUser"></div>
+
+<button id="logoutBtn" class="icon-btn">
+
+<i class="fa-solid fa-right-from-bracket"></i>
+
+</button>
+
+</div>
+
+</header>
+
+<!-- Dashboard Header -->
+
+<section class="dashboard-header">
+
+<div>
+
+<div class="welcome">ยินดีต้อนรับ</div>
+
+<div class="last-update" id="todayText"></div>
+
+</div>
+
+</section>
+
+<!-- Dashboard Cards -->
+
+<section class="dashboard">
+
+<div class="stat-card blue">
+
+<i class="fa-solid fa-calendar-days"></i>
+
+<h3 id="totalRecords">0</h3>
+
+<span>รายการทั้งหมด</span>
+
+</div>
+
+<div class="stat-card green">
+
+<i class="fa-solid fa-clock"></i>
+
+<h3 id="totalHours">0</h3>
+
+<span>ชั่วโมงรวม</span>
+
+</div>
+
+<div class="stat-card red">
+
+<i class="fa-solid fa-ambulance"></i>
+
+<h3 id="totalEMS">0</h3>
+
+<span>EMS</span>
+
+</div>
+
+<div class="stat-card purple">
+
+<i class="fa-solid fa-hospital-user"></i>
+
+<h3 id="totalRefer">0</h3>
+
+<span>Refer</span>
+
+</div>
+
+</section>
+
+<!-- Navigation -->
+
+<nav class="nav-menu">
+
+<button class="nav-btn active" data-page="formPage">
+
+<i class="fa-solid fa-file-circle-plus"></i>
+
+บันทึกข้อมูล
+
+</button>
+
+<button class="nav-btn" data-page="summaryPage">
+
+<i class="fa-solid fa-table"></i>
+
+สรุปข้อมูล
+
+</button>
+
+<button class="nav-btn" data-page="exportPage">
+
+<i class="fa-solid fa-file-pdf"></i>
+
+Export PDF
+
+</button>
+
+</nav>
+
+<!-- =====================================================
+     PAGE : FORM
+===================================================== -->
+
+<main id="formPage" class="page">
+
+<div class="page-card">
+
+<h2>
+
+<i class="fa-solid fa-notes-medical"></i>
+
+บันทึกการปฏิบัติหน้าที่
+
+</h2>
+
+<form id="dutyForm" class="form-container">
+<!-- ข้อมูลผู้ปฏิบัติงาน -->
+
+<section class="form-section">
+
+<h3><i class="fa-solid fa-user-nurse"></i> ผู้ปฏิบัติงาน</h3>
+
+<div class="form-grid">
+
+<div class="input-group">
+<label>ชื่อ-สกุล</label>
+
+<select id="staffSelect">
+<option value="">เลือกผู้ปฏิบัติงาน</option>
+</select>
+
+</div>
+
+<div class="input-group">
+<label>หรือระบุชื่อเอง</label>
+<input id="staffOther" type="text" placeholder="ระบุชื่อเอง">
+</div>
+
+</div>
+
+</section>
+
+<!-- วันที่ -->
+
+<section class="form-section">
+
+<h3><i class="fa-solid fa-calendar-days"></i> วันที่ปฏิบัติงาน</h3>
+
+<div class="form-grid">
+
+<div class="input-group">
+<label>วันที่</label>
+<input id="dutyDate" type="date">
+</div>
+
+<div class="input-group">
+<label>ประเภทเวร</label>
+
+<select id="dutyType">
+<option>เวรเช้า OT ในตารางเวร</option>
+<option>เวรบ่าย OT ในตารางเวร</option>
+<option>เวรดึก OT ในตารางเวร</option>
+</select>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- EMS -->
+
+<section class="form-section ems-card">
+
+<h3><i class="fa-solid fa-ambulance"></i> Stand by EMS</h3>
+
+<div class="input-group">
+<label>เหตุการณ์ / สถานที่</label>
+
+<textarea id="emsDetail"
+placeholder="เช่น อุบัติเหตุรถจักรยานยนต์ บ้านทุ่ง..."></textarea>
+
+</div>
+
+</section>
+
+<!-- Refer -->
+
+<section class="form-section refer-card">
+
+<h3><i class="fa-solid fa-hospital-user"></i> Refer</h3>
+
+<div class="form-grid">
+
+<div class="input-group">
+<label>Diagnosis (Dx)</label>
+<input id="referDx" type="text">
+</div>
+
+<div class="input-group">
+<label>โรงพยาบาลปลายทาง</label>
+<input id="referHospital" type="text">
+</div>
+
+</div>
+
+</section>
+
+<!-- เวลา -->
+
+<section class="form-section">
+
+<h3><i class="fa-solid fa-clock"></i> เวลาปฏิบัติหน้าที่</h3>
+
+<div class="time-group">
+
+<input id="timeStart" type="time">
+
+<div class="time-arrow">
+<i class="fa-solid fa-arrow-right"></i>
+</div>
+
+<input id="timeEnd" type="time">
+
+</div>
+
+</section>
+
+<!-- ชั่วโมง -->
+
+<section class="form-section">
+
+<h3><i class="fa-solid fa-hourglass-half"></i> จำนวนชั่วโมง</h3>
+
+<div class="hour-group">
+
+<button type="button" class="hour-btn active" data-hour="2">
+2 ชม.
+</button>
+
+<button type="button" class="hour-btn" data-hour="4">
+4 ชม.
+</button>
+
+<button type="button" class="hour-btn" data-hour="8">
+8 ชม.
+</button>
+
+</div>
+
+<input id="hourValue" type="hidden" value="2">
+
+</section>
+
+<!-- Shift -->
+
+<section class="form-section">
+
+<h3><i class="fa-solid fa-arrows-rotate"></i> Shift</h3>
+
+<div class="shift-group">
+
+<button type="button" class="shift-chip active" data-shift="เช้า">
+🌅 เช้า
+</button>
+
+<button type="button" class="shift-chip" data-shift="บ่าย">
+🌇 บ่าย
+</button>
+
+<button type="button" class="shift-chip" data-shift="ดึก">
+🌙 ดึก
+</button>
+
+</div>
+
+<input id="shiftValue" type="hidden" value="เช้า">
+
+</section>
+
+<!-- หัวหน้าเวร -->
+
+<section class="form-section">
+
+<h3><i class="fa-solid fa-user-check"></i> หัวหน้าเวรผู้รับรอง</h3>
+
+<div class="input-group">
+
+<select id="supervisorSelect">
+<option value="">เลือกหัวหน้าเวร</option>
+</select>
+
+</div>
+
+</section>
+
+<!-- ลายเซ็น -->
+
+<section class="form-section">
+
+<h3><i class="fa-solid fa-signature"></i> ลายมือชื่อ</h3>
+
+<div class="form-grid">
+
+<div>
+<label>ผู้ปฏิบัติงาน</label>
+
+<div class="signature-line"></div>
+
+<caption>ลงท้ายรายงาน PDF</caption>
+
+</div>
+
+<div>
+<label>หัวหน้าเวร</label>
+
+<div class="signature-line"></div>
+
+<caption>ลงท้ายรายงาน PDF</caption>
+
+</div>
+
+</div>
+
+</section>
+
+<div class="save-area">
+
+<button id="saveDutyBtn" class="save-btn" type="submit">
+
+<i class="fa-solid fa-floppy-disk"></i>
+
+บันทึกข้อมูล
+
+</button>
+
+</div> 
+</form>
+
+</div>
+
+</main>
+
+<!-- =====================================================
+     PAGE : SUMMARY
+===================================================== -->
+
+<section id="summaryPage" class="page hidden">
+
+<div class="page-card">
+
+<h2>
+<i class="fa-solid fa-table"></i>
+สรุปข้อมูลการปฏิบัติหน้าที่
+</h2>
+
+<div class="summary-toolbar">
+
+<input
+id="searchInput"
+class="summary-search"
+type="text"
+placeholder="ค้นหาชื่อผู้ปฏิบัติงาน...">
+
+<button id="refreshSummary" class="primary-btn">
+<i class="fa-solid fa-rotate"></i>
+รีเฟรช
+</button>
+
+</div>
+
+<div class="table-wrapper">
+
+<table class="summary-table">
+
+<thead>
+
+<tr>
+
+<th>วันที่</th>
+<th>ผู้ปฏิบัติงาน</th>
+<th>เวร</th>
+<th>เวลา</th>
+<th>ชม.</th>
+<th>Shift</th>
+<th>EMS</th>
+<th>Refer</th>
+<th>หัวหน้าเวร</th>
+
+</tr>
+
+</thead>
+
+<tbody id="summaryTableBody">
+
+<tr>
+
+<td colspan="9">
+
+<div class="empty-state">
+
+<i class="fa-solid fa-folder-open"></i>
+
+<p>ยังไม่มีข้อมูล</p>
+
+</div>
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- =====================================================
+     PAGE : EXPORT
+===================================================== -->
+
+<section id="exportPage" class="page hidden">
+
+<div class="page-card print-preview">
+
+<div class="report-header">
+
+<h1>ER Duty MPH</h1>
+
+<h2>แบบบันทึกการปฏิบัติหน้าที่</h2>
+
+<p>หน่วยงานอุบัติเหตุฉุกเฉินและนิติเวช โรงพยาบาลเมืองปาน</p>
+
+</div>
+
+<div class="table-wrapper">
+
+<table class="summary-table">
+
+<thead>
+
+<tr>
+
+<th>วันที่</th>
+<th>ผู้ปฏิบัติงาน</th>
+<th>เวร</th>
+<th>เวลา</th>
+<th>ชม.</th>
+<th>Shift</th>
+<th>หัวหน้าเวร</th>
+
+</tr>
+
+</thead>
+
+<tbody id="printTableBody">
+
+<tr>
+
+<td colspan="7">
+
+<div class="empty-state">
+
+<i class="fa-solid fa-file-pdf"></i>
+
+<p>ไม่มีข้อมูลสำหรับพิมพ์</p>
+
+</div>
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+<div class="report-footer">
+
+<div class="signature-area">
+
+<div class="signature-box">
+
+<div class="signature-line"></div>
+
+ผู้ปฏิบัติงาน
+
+</div>
+
+<div class="signature-box">
+
+<div class="signature-line"></div>
+
+หัวหน้าเวร
+
+</div>
+
+</div>
+
+</div>
+
+<div style="margin-top:25px;text-align:center;">
+
+<button id="exportPdfBtn" class="primary-btn">
+
+<i class="fa-solid fa-file-pdf"></i>
+
+Export PDF A4
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+</div>
+
+<!-- =====================================================
+     Scripts
+===================================================== -->
 
 <script src="js/api.js"></script>
 <script src="js/login.js"></script>
-<script src="js/form.js"></script>
-<script src="js/signature.js"></script>
-<script src="js/summary.js"></script>
-<script src="js/export.js"></script>
-<script src="js/app.js"></script>
+
+<script>
+
+document.addEventListener("DOMContentLoaded",()=>{
+
+const today=new Date();
+
+const text=today.toLocaleDateString("th-TH",{
+
+weekday:"long",
+
+year:"numeric",
+
+month:"long",
+
+day:"numeric"
+
+});
+
+const todayText=document.getElementById("todayText");
+
+if(todayText){
+
+todayText.textContent=text;
+
+}
+
+});
+
+</script>
 
 </body>
-</html>
+</html>  
