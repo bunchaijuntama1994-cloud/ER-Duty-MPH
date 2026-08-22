@@ -89,24 +89,29 @@ document.getElementById("nightHours").textContent =
 // ===== Top Staff =====
 const topList = document.getElementById("topStaffList");
 
-if (topList) {
-  topList.innerHTML = "";
+  // ===== Top Staff =====
+  const topList = document.getElementById("topStaffList");
 
-  if (dash.topStaff.length === 0) {
-    topList.innerHTML = "<div>ยังไม่มีข้อมูล</div>";
-  } else {
-    dash.topStaff.forEach((item, i) => {
-      topList.innerHTML += `
-        <div class="topstaff-item">
-          <span class="topstaff-rank">#${i + 1} ${item.name}</span>
-          <span class="topstaff-hours">${item.hours} ชม.</span>
-        </div>`;
-    });
+  if (topList) {
+    topList.innerHTML = "";
+
+    if (dash.topStaff.length === 0) {
+      topList.innerHTML = "<div>ยังไม่มีข้อมูล</div>";
+    } else {
+      dash.topStaff.forEach((item, i) => {
+        topList.innerHTML += `
+          <div class="topstaff-item">
+            <span class="topstaff-rank">#${i + 1} ${item.name}</span>
+            <span class="topstaff-hours">${item.hours} ชม.</span>
+          </div>`;
+      });
+    }
   }
-}   
+
+  // ===== Charts =====
+  renderShiftChart(dash);
+  renderEMSChart(dash);
 }
-renderShiftChart(dash);
-renderEMSChart(dash);
 
 /* ---------------- Form ---------------- */
 
