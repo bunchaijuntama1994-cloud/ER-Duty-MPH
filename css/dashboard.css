@@ -384,3 +384,12 @@ opacity:1;
 transform:translateY(0);
 }
 }
+/* ===== Dashboard Analytics Colors ===== */
+
+.stat-card.orange{
+    background: linear-gradient(135deg,#FB8C00,#F57C00);
+}
+
+.stat-card.teal{
+    background: linear-gradient(135deg,#009688,#00695C);
+}
