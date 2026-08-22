@@ -22,31 +22,38 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function initNavigation(){
 
-document.getElementById("dashboardPage").classList.remove("hidden");
-document.querySelectorAll(".page").forEach(p=>{
-  if(p.id!=="dashboardPage") p.classList.add("hidden");
-}); 
-  document.querySelectorAll(".nav-btn").forEach(btn=>{
+  // แสดง Dashboard เป็นหน้าแรก
+  document.querySelectorAll(".page").forEach(p => {
+    if (p.id === "dashboardPage") {
+      p.classList.remove("hidden");
+    } else {
+      p.classList.add("hidden");
+    }
+  });
 
-    btn.addEventListener("click",()=>{
+  document.querySelectorAll(".nav-btn").forEach(btn => {
+
+    btn.addEventListener("click", () => {
 
       document.querySelectorAll(".nav-btn")
-        .forEach(b=>b.classList.remove("active"));
+        .forEach(b => b.classList.remove("active"));
 
       btn.classList.add("active");
 
       document.querySelectorAll(".page")
-        .forEach(p=>p.classList.add("hidden"));
+        .forEach(p => p.classList.add("hidden"));
 
-      document
-        .getElementById(btn.dataset.page)
-        .classList.remove("hidden");
-if(btn.dataset.page==="dashboardPage"){
-    refreshDashboard();
-}
-      if(btn.dataset.page==="summaryPage") renderSummary();
-      if(btn.dataset.page==="exportPage") renderPrintTable();
-       
+      const page = document.getElementById(btn.dataset.page);
+      if (page) {
+        page.classList.remove("hidden");
+      }
+
+      if (btn.dataset.page === "dashboardPage") {
+        refreshDashboard();
+      }
+
+      if (btn.dataset.page === "summaryPage") renderSummary();
+      if (btn.dataset.page === "exportPage") renderPrintTable();
     });
 
   });
