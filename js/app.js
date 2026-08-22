@@ -5,6 +5,8 @@
    Navigation + Form + Dashboard + Summary + Export
 ========================================================== */
 
+let editingIndex = -1;
+
 document.addEventListener("DOMContentLoaded", () => {
 
   initNavigation();
@@ -402,6 +404,15 @@ function renderSummary(){
         <td>${r.referDx?'<span class="badge-refer">Refer</span>':'-'}</td>
 
         <td>${r.supervisor||"-"}</td>
+<td class="action-cell">
+    <button class="edit-btn" onclick="editRecord(${APP.records.indexOf(r)})">
+        <i class="fa-solid fa-pen"></i>
+    </button>
+
+    <button class="delete-btn" onclick="deleteRecord(${APP.records.indexOf(r)})">
+        <i class="fa-solid fa-trash"></i>
+    </button>
+</td>
 
       </tr>`;
 
@@ -409,6 +420,33 @@ function renderSummary(){
 
 }
 
+function editRecord(index){
+
+    const r = APP.records[index];
+    if(!r) return;
+
+    document.querySelector('[data-page="formPage"]').click();
+
+    document.getElementById("staffSelect").value = r.staff || "";
+    document.getElementById("alias").value = r.alias || "";
+    document.getElementById("dutyDate").value = r.date || "";
+    document.getElementById("dutyType").value = r.dutyType || "";
+    document.getElementById("startTime").value = r.timeStart || "";
+    document.getElementById("endTime").value = r.timeEnd || "";
+    document.getElementById("supervisorSelect").value = r.supervisor || "";
+}
+
+function deleteRecord(index){
+
+    if(!confirm("ต้องการลบรายการนี้ใช่หรือไม่?")) return;
+
+    APP.records.splice(index,1);
+
+    saveData();
+    refreshDashboard();
+    renderSummary();
+    renderPrintTable();
+}
 /* ---------------- Print Table ---------------- */
 
 function renderPrintTable(){
