@@ -37,10 +37,12 @@ function initNavigation(){
       document
         .getElementById(btn.dataset.page)
         .classList.remove("hidden");
-
+if(btn.dataset.page==="dashboardPage"){
+    refreshDashboard();
+}
       if(btn.dataset.page==="summaryPage") renderSummary();
       if(btn.dataset.page==="exportPage") renderPrintTable();
-
+       
     });
 
   });
@@ -111,13 +113,13 @@ function initForm(){
 
   if(staff){
 
-    APP.STAFF.forEach(name=>{
+    staff.innerHTML = '<option value="">เลือกผู้ปฏิบัติงาน</option>';
+supervisor.innerHTML = '<option value="">เลือกหัวหน้าเวร</option>';
 
-      staff.innerHTML+=`<option value="${name}">${name}</option>`;
-
-      supervisor.innerHTML+=`<option value="${name}">${name}</option>`;
-
-    });
+APP.STAFF.forEach(name=>{
+    staff.innerHTML += `<option value="${name}">${name}</option>`;
+    supervisor.innerHTML += `<option value="${name}">${name}</option>`;
+});
 
   }
 
