@@ -168,12 +168,6 @@ const topStaff = Object.entries(staffSummary)
   .sort((a,b)=>b[1]-a[1])
   .slice(0,5)
   .map(([name,hours])=>({name,hours}));
-   
-(sum,r)=>sum+Number(r.hours||0),
-
-0
-
-);
 
 const totalEMS = records.filter(
   r => (r.ems || "").trim() !== ""
