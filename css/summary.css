@@ -1,0 +1,248 @@
+
+/* =========================================================
+   ER Duty MPH
+   File : css/summary.css
+   Summary Table
+   ========================================================= */
+
+/* กล่องสรุป */
+
+.summary-container{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:20px;
+
+}
+
+/* แถบค้นหา */
+
+.summary-toolbar{
+
+    display:flex;
+
+    gap:12px;
+
+    flex-wrap:wrap;
+
+    align-items:center;
+
+}
+
+.summary-search{
+
+    flex:1;
+
+    min-width:220px;
+
+}
+
+/* ตาราง */
+
+.summary-table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    background:white;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    box-shadow:
+        0 10px 28px rgba(15,118,110,.08);
+
+}
+
+/* Header */
+
+.summary-table thead{
+
+    background:
+        linear-gradient(
+            135deg,
+            #0EA5E9,
+            #0F766E
+        );
+
+    color:white;
+
+}
+
+.summary-table th{
+
+    padding:14px;
+
+    text-align:center;
+
+    font-size:14px;
+
+    white-space:nowrap;
+
+}
+
+/* Cell */
+
+.summary-table td{
+
+    padding:12px;
+
+    border-bottom:1px solid #E5E7EB;
+
+    text-align:center;
+
+    font-size:14px;
+
+}
+
+/* Hover */
+
+.summary-table tbody tr:hover{
+
+    background:#F0FAFF;
+
+}
+
+/* วันที่ */
+
+.summary-date{
+
+    font-weight:700;
+
+    color:#0369A1;
+
+}
+
+/* Shift Badge */
+
+.shift-badge{
+
+    display:inline-block;
+
+    padding:6px 12px;
+
+    border-radius:999px;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    color:white;
+
+}
+
+.shift-morning{
+
+    background:#10B981;
+
+}
+
+.shift-afternoon{
+
+    background:#F59E0B;
+
+}
+
+.shift-night{
+
+    background:#1D4ED8;
+
+}
+
+/* EMS */
+
+.badge-ems{
+
+    display:inline-block;
+
+    padding:5px 10px;
+
+    border-radius:999px;
+
+    background:#EF4444;
+
+    color:white;
+
+    font-size:12px;
+
+    font-weight:700;
+
+}
+
+/* Refer */
+
+.badge-refer{
+
+    display:inline-block;
+
+    padding:5px 10px;
+
+    border-radius:999px;
+
+    background:#7C3AED;
+
+    color:white;
+
+    font-size:12px;
+
+    font-weight:700;
+
+}
+
+/* Empty */
+
+.empty-state{
+
+    text-align:center;
+
+    padding:60px 20px;
+
+    color:#64748B;
+
+}
+
+.empty-state i{
+
+    font-size:60px;
+
+    color:#0EA5E9;
+
+    margin-bottom:16px;
+
+}
+
+/* Sticky Header */
+
+.table-wrapper{
+
+    overflow:auto;
+
+    border-radius:20px;
+
+}
+
+.table-wrapper thead th{
+
+    position:sticky;
+
+    top:0;
+
+    z-index:10;
+
+}
+
+/* Responsive */
+
+@media(max-width:900px){
+
+    .summary-table{
+
+        min-width:900px;
+
+    }
+
+}
