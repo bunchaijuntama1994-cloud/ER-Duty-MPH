@@ -393,3 +393,56 @@ textarea:focus{
     padding:24px;
   }
 }
+/* ===============================
+   A4 Print Fix
+=============================== */
+
+@media print {
+
+  body{
+    margin:0;
+    padding:0;
+  }
+
+  table{
+    width:100% !important;
+    table-layout:fixed;
+    border-collapse:collapse;
+  }
+
+  th, td{
+    font-size:10px;
+    padding:6px;
+    white-space:normal;
+    word-break:break-word;
+  }
+
+  .signature-area{
+    display:flex;
+    justify-content:space-between;
+    margin-top:40px;
+  }
+
+  .signature-box{
+    width:40%;
+    text-align:center;
+  }
+
+  .signature-line{
+    border-top:1px solid #000;
+    margin-bottom:8px;
+}
+
+.report-card,
+.table-container{
+    overflow:visible !important;
+    width:100% !important;
+    max-width:100% !important;
+}
+
+table th:last-child,
+table td:last-child{
+    width:18%;
+}
+
+}
