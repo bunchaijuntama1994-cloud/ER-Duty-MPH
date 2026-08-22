@@ -1,0 +1,243 @@
+/* =========================================================
+   ER Duty MPH
+   File : css/print.css
+   A4 Portrait Print Layout
+   ========================================================= */
+
+@media print{
+
+/* -------------------------
+   A4
+-------------------------- */
+
+@page{
+
+size:A4 portrait;
+
+margin:10mm;
+
+}
+
+/* -------------------------
+   พื้นฐาน
+-------------------------- */
+
+html,
+body{
+
+background:white!important;
+
+font-size:11px;
+
+color:black;
+
+}
+
+*{
+
+box-shadow:none!important;
+
+text-shadow:none!important;
+
+}
+
+/* -------------------------
+   ซ่อนส่วนที่ไม่ต้องพิมพ์
+-------------------------- */
+
+.topbar,
+.nav-menu,
+button,
+.no-print{
+
+display:none!important;
+
+}
+
+/* -------------------------
+   พื้นที่พิมพ์
+-------------------------- */
+
+.page{
+
+padding:0!important;
+
+}
+
+.page-card{
+
+border:none!important;
+
+padding:0!important;
+
+margin:0!important;
+
+}
+
+/* -------------------------
+   ตาราง
+-------------------------- */
+
+.summary-table{
+
+width:100%;
+
+border-collapse:collapse;
+
+font-size:10px;
+
+}
+
+.summary-table th{
+
+background:#E2F3FF!important;
+
+color:black!important;
+
+border:1px solid #999;
+
+padding:6px;
+
+font-weight:700;
+
+}
+
+.summary-table td{
+
+border:1px solid #BDBDBD;
+
+padding:5px;
+
+vertical-align:middle;
+
+}
+
+/* หลีกเลี่ยงแถวแตกหน้า */
+
+.summary-table tr{
+
+page-break-inside:avoid;
+
+}
+
+/* -------------------------
+   หัวรายงาน
+-------------------------- */
+
+.report-header{
+
+display:block;
+
+text-align:center;
+
+margin-bottom:8mm;
+
+}
+
+.report-header h1{
+
+font-size:18px;
+
+margin-bottom:3mm;
+
+}
+
+.report-header h2{
+
+font-size:14px;
+
+margin-bottom:2mm;
+
+}
+
+.report-header p{
+
+font-size:11px;
+
+}
+
+/* -------------------------
+   Footer
+-------------------------- */
+
+.report-footer{
+
+margin-top:12mm;
+
+page-break-inside:avoid;
+
+}
+
+/* ลายเซ็น */
+
+.signature-area{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:flex-end;
+
+gap:30mm;
+
+margin-top:18mm;
+
+}
+
+.signature-box{
+
+flex:1;
+
+text-align:center;
+
+}
+
+.signature-line{
+
+border-top:1px solid black;
+
+margin-top:18mm;
+
+padding-top:2mm;
+
+font-weight:600;
+
+}
+
+/* -------------------------
+   หมายเลขหน้า
+-------------------------- */
+
+.page-number{
+
+position:fixed;
+
+bottom:5mm;
+
+right:5mm;
+
+font-size:10px;
+
+color:#555;
+
+}
+
+}
+
+/* =========================================================
+   Preview Mode
+   ========================================================= */
+
+.print-preview{
+
+max-width:210mm;
+
+margin:auto;
+
+background:white;
+
+padding:12mm;
+
+box-shadow:0 0 18px rgba(0,0,0,.12);
+
+}
