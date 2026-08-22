@@ -97,7 +97,6 @@ document.getElementById("nightHours").textContent =
 const topList = document.getElementById("topStaffList");
 
   // ===== Top Staff =====
-  const topList = document.getElementById("topStaffList");
 
   if (topList) {
     topList.innerHTML = "";
