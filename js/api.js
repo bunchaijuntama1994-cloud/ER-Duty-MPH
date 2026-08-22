@@ -174,8 +174,9 @@ const totalEMS = records.filter(
 ).length;
 
 const totalRefer = records.filter(
-  r => (r.referDx || "").trim() !== "" ||
-       (r.referHospital || "").trim() !== ""
+  r =>
+    (r.referDx || "").trim() !== "" ||
+    (r.referHospital || "").trim() !== ""
 ).length;
 
 return{
