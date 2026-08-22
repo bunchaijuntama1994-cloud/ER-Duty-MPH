@@ -342,24 +342,13 @@ Export PDF
     </label>
 
     <select id="dutyType">
-
-        <option value="ไม่ระบุ">
-            ไม่ระบุ (Stand by Refer/EMS เท่านั้น)
-        </option>
-
-        <option value="เวรเช้า OT ในตารางเวร">
-            เวรเช้า OT ในตารางเวร
-        </option>
-
-        <option value="เวรบ่าย OT ในตารางเวร">
-            เวรบ่าย OT ในตารางเวร
-        </option>
-
-        <option value="เวรดึก OT ในตารางเวร">
-            เวรดึก OT ในตารางเวร
-        </option>
-
-    </select>
+  <option value="ไม่ระบุ">ไม่ระบุ</option>
+  <option value="EMS">EMS</option>
+  <option value="Refer">Refer</option>
+  <option value="เวรเช้า OT ในตารางเวร">เวรเช้า OT ในตารางเวร</option>
+  <option value="เวรบ่าย OT ในตารางเวร">เวรบ่าย OT ในตารางเวร</option>
+  <option value="เวรดึก OT ในตารางเวร">เวรดึก OT ในตารางเวร</option>
+</select>
 
     <small class="input-hint">
         หากเป็นการออก EMS หรือ Refer โดยไม่ได้ขึ้นเวร OT ให้เลือก "ไม่ระบุ"
@@ -759,10 +748,11 @@ const timeSection = document.getElementById("timeSection");
 const hourSection = document.getElementById("hourSection");
 
 function toggleDutyFields() {
-  const hide = dutyType.value === "ไม่ระบุ";
+  const type = dutyType.value;
+const showTime = type.includes("OT");
 
-  timeSection.style.display = hide ? "none" : "block";
-  hourSection.style.display = hide ? "none" : "block";
+timeSection.style.display = showTime ? "block" : "none";
+hourSection.style.display = showTime ? "block" : "none";
 }
 
 toggleDutyFields();
