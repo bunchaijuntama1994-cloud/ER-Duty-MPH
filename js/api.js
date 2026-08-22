@@ -146,16 +146,13 @@ const totalHours=records.reduce(
 
 );
 
-const totalEMS=records.filter(
-
-r=>r.standby==="EMS"
-
+const totalEMS = records.filter(
+  r => (r.ems || "").trim() !== ""
 ).length;
 
-const totalRefer=records.filter(
-
-r=>r.standby==="Refer"
-
+const totalRefer = records.filter(
+  r => (r.referDx || "").trim() !== "" ||
+       (r.referHospital || "").trim() !== ""
 ).length;
 
 return{
