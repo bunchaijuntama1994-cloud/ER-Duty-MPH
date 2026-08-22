@@ -468,5 +468,10 @@ table td:last-child{
   #exportPage td:last-child{
       width:16%;
   }
-   
+  #exportPage .table-wrapper{
+    overflow: visible !important;
+    overflow-x: visible !important;
+    width:100% !important;
+    max-width:100% !important;
+} 
 }
