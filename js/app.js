@@ -10,7 +10,8 @@ document.addEventListener("DOMContentLoaded", () => {
   initNavigation();
   initForm();
   initButtons();
-  initAutoHours(); 
+  initAutoHours();
+  initSmartOT();  
   refreshDashboard();
   renderSummary();
   renderPrintTable();
@@ -163,6 +164,55 @@ function initAutoHours(){
 
   start.addEventListener("change",calculateHours);
   end.addEventListener("change",calculateHours);
+}
+/* ---------------- Smart OT ---------------- */
+
+function initSmartOT(){
+
+  const dutyType = document.getElementById("dutyType");
+  const shiftInput = document.getElementById("shiftValue");
+
+  if(!dutyType || !shiftInput) return;
+
+  function applyDefaultTime(){
+
+    const shift = shiftInput.value;
+
+    const start = document.getElementById("timeStart");
+    const end   = document.getElementById("timeEnd");
+
+    if(!start || !end) return;
+
+    // EMS / Refer ไม่บังคับเวลา
+    if(dutyType.value === "ไม่ระบุ"){
+      return;
+    }
+
+    const table = {
+      "เช้า": ["16:00","18:00"],
+      "บ่าย": ["00:00","02:00"],
+      "ดึก": ["08:00","10:00"]
+    };
+
+    const t = table[shift];
+
+    if(!t) return;
+
+    start.value = t[0];
+    end.value   = t[1];
+
+    // กระตุ้นให้ initAutoHours คำนวณใหม่
+    start.dispatchEvent(new Event("change"));
+  }
+
+  dutyType.addEventListener("change",applyDefaultTime);
+
+  document.querySelectorAll(".shift-chip").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      setTimeout(applyDefaultTime,0);
+    });
+  });
+
 }
 
 /* ---------------- Save ---------------- */
