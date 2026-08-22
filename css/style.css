@@ -444,5 +444,29 @@ table th:last-child,
 table td:last-child{
     width:18%;
 }
+  /* Fix PDF Export Table */
+  #exportPage{
+      overflow: visible !important;
+  }
 
+  #exportPage table{
+      width:100% !important;
+      table-layout:fixed;
+      border-collapse:collapse;
+  }
+
+  #exportPage th,
+  #exportPage td{
+      white-space:normal;
+      word-break:break-word;
+      overflow-wrap:anywhere;
+      padding:6px;
+      font-size:10px;
+  }
+
+  #exportPage th:last-child,
+  #exportPage td:last-child{
+      width:16%;
+  }
+   
 }
