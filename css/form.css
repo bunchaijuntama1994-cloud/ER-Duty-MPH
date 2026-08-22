@@ -137,6 +137,23 @@
     color:#64748B;
 
 }
+/* เวลา */
+#timeSection,
+#hourSection{
+  display:block !important;
+}
+
+/* ปุ่มจำนวนชั่วโมง */
+.hour-group{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.hour-btn{
+  flex:1;
+  min-width:120px;
+}
 
 /* Shift */
 
