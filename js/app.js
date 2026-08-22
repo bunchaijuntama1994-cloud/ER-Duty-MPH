@@ -57,7 +57,20 @@ function refreshDashboard(){
   document.getElementById("totalHours").textContent=dash.totalHours;
   document.getElementById("totalEMS").textContent=dash.totalEMS;
   document.getElementById("totalRefer").textContent=dash.totalRefer;
+// Average hours per record
+const avg = dash.totalRecords
+  ? (dash.totalHours / dash.totalRecords).toFixed(1)
+  : "0.0";
 
+document.getElementById("avgHours").textContent = avg;
+
+// EMS ratio
+const emsRatio = dash.totalRecords
+  ? Math.round((dash.totalEMS / dash.totalRecords) * 100)
+  : 0;
+
+document.getElementById("emsPercent").textContent = `${emsRatio}%`;
+   
 document.getElementById("morningHours").textContent =
   `${dash.morningHours} ชม.`;
 
