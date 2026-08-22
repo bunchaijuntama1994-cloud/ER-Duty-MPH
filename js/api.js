@@ -138,11 +138,15 @@ const records=getRecords();
 
 const totalRecords=records.length;
 
-const totalHours=records.reduce(
+const totalHours = records.reduce(
+  (sum, r) => sum + Number(r.hours || 0),
+  0
+);
+
 // ชั่วโมงแยกตามเวร
 const morningHours = records
   .filter(r => r.shift === "เช้า")
-  .reduce((sum,r)=>sum+Number(r.hours||0),0);
+  .reduce((sum, r) => sum + Number(r.hours || 0), 0);
 
 const afternoonHours = records
   .filter(r => r.shift === "บ่าย")
