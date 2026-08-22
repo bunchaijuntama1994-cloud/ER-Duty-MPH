@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initNavigation();
   initForm();
   initButtons();
+  initAutoHours(); 
   refreshDashboard();
   renderSummary();
   renderPrintTable();
@@ -122,6 +123,46 @@ function initButtons(){
 
   document.getElementById("exportPdfBtn").onclick=()=>window.print();
 
+}
+
+function initAutoHours(){
+
+  const start=document.getElementById("timeStart");
+  const end=document.getElementById("timeEnd");
+  const hourInput=document.getElementById("hourValue");
+
+  if(!start||!end||!hourInput) return;
+
+  function calculateHours(){
+
+    if(!start.value||!end.value) return;
+
+    const [sh,sm]=start.value.split(":").map(Number);
+    const [eh,em]=end.value.split(":").map(Number);
+
+    let startMin=sh*60+sm;
+    let endMin=eh*60+em;
+
+    if(endMin<startMin){
+      endMin+=24*60;
+    }
+
+    const diff=Math.round((endMin-startMin)/60);
+
+    hourInput.value=diff;
+
+    document.querySelectorAll(".hour-btn")
+      .forEach(btn=>btn.classList.remove("active"));
+
+    const btn=document.querySelector(`.hour-btn[data-hour="${diff}"]`);
+
+    if(btn){
+      btn.classList.add("active");
+    }
+  }
+
+  start.addEventListener("change",calculateHours);
+  end.addEventListener("change",calculateHours);
 }
 
 /* ---------------- Save ---------------- */
