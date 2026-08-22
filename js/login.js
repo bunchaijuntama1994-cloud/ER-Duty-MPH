@@ -76,9 +76,10 @@ function login(){
 
     }
 
-    localStorage.setItem(USER_KEY,user.value);
+    localStorage.setItem(USER_KEY, user.value);
+sessionStorage.setItem("currentUser", JSON.stringify({ username: user.value }));
 
-    document.getElementById("currentUser").textContent=user.value;
+document.getElementById("currentUser").textContent = user.value;
 
     document.getElementById("loginScreen").classList.add("hidden");
 
@@ -96,8 +97,8 @@ function login(){
 
 function logout(){
 
-    document.getElementById("appContainer").classList.add("hidden");
+  document.getElementById("appContainer").classList.add("hidden");
+  document.getElementById("loginScreen").classList.remove("hidden");
 
-    document.getElementById("loginScreen").classList.remove("hidden");
-
+  sessionStorage.removeItem("currentUser");
 }
