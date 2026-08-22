@@ -281,17 +281,36 @@ Export PDF
 <input id="dutyDate" type="date">
 </div>
 
-<div class="input-group">
-<label>ประเภทเวร</label>
+<div class="input-group" id="dutyTypeGroup">
 
-<select id="dutyType">
-<option value="ไม่ระบุ">ไม่ระบุ (Stand by Refer/EMS เท่านั้น)</option>     
-<option>เวรเช้า OT ในตารางเวร</option>
-<option>เวรบ่าย OT ในตารางเวร</option>
-<option>เวรดึก OT ในตารางเวร</option>
-</select>
+    <label>
+        <i class="fa-solid fa-user-clock"></i>
+        ประเภทเวร
+    </label>
 
-</div>
+    <select id="dutyType">
+
+        <option value="ไม่ระบุ">
+            ไม่ระบุ (Stand by Refer/EMS เท่านั้น)
+        </option>
+
+        <option value="เวรเช้า OT ในตารางเวร">
+            เวรเช้า OT ในตารางเวร
+        </option>
+
+        <option value="เวรบ่าย OT ในตารางเวร">
+            เวรบ่าย OT ในตารางเวร
+        </option>
+
+        <option value="เวรดึก OT ในตารางเวร">
+            เวรดึก OT ในตารางเวร
+        </option>
+
+    </select>
+
+    <small class="input-hint">
+        หากเป็นการออก EMS หรือ Refer โดยไม่ได้ขึ้นเวร OT ให้เลือก "ไม่ระบุ"
+    </small>
 
 </div>
 
