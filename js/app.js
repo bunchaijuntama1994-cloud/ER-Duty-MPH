@@ -482,24 +482,16 @@ function renderPrintTable(){
 
   records.forEach(r=>{
 
-    body.innerHTML+=`
-      <tr>
-
-        <td>${formatDate(r.date)}</td>
-
-        <td>${r.staff}</td>
-
-        <td>${r.dutyType}</td>
-
-        <td>${r.timeStart||"-"} - ${r.timeEnd||"-"}</td>
-
-        <td>${r.hours}</td>
-
-        <td>${r.shift}</td>
-
-        <td>${r.supervisor||"-"}</td>
-
-      </tr>`;
+    body.innerHTML += `
+<tr>
+  <td>${formatDate(r.date)}</td>
+  <td>${r.staff || "-"}</td>
+  <td>${r.dutyType || "-"}</td>
+  <td>${r.timeStart || "--:--"} - ${r.timeEnd || "--:--"}</td>
+  <td>${r.hours || "-"}</td>
+  <td>${r.shift || "-"}</td>
+  <td>${r.supervisor || "-"}</td>
+</tr>`;
 
   });
 const latest = records[0];
@@ -507,8 +499,6 @@ const latest = records[0];
 document.getElementById("printStaffName").textContent =
     latest?.staff || "ผู้ปฏิบัติงาน";
 
-document.getElementById("printSupervisorName").textContent =
-    latest?.supervisor || "หัวหน้าเวร";
 }
 let shiftChart = null;
 let emsChart = null;
