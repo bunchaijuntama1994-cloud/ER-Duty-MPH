@@ -32,6 +32,9 @@ if (defaultPage) {
   defaultPage.classList.remove("hidden");
 }
 
+document.querySelector('.nav-btn[data-page="formPage"]')
+  ?.classList.add("active");
+
   document.querySelectorAll(".nav-btn").forEach(btn => {
 
     btn.addEventListener("click", () => {
