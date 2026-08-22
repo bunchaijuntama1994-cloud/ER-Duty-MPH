@@ -99,6 +99,8 @@ if (topList) {
   }
 }   
 }
+renderShiftChart(dash);
+renderEMSChart(dash);
 
 /* ---------------- Form ---------------- */
 
@@ -400,6 +402,54 @@ function renderPrintTable(){
 
   });
 
+}
+let shiftChart = null;
+let emsChart = null;
+
+function renderShiftChart(dash){
+  const canvas = document.getElementById("shiftChart");
+  if(!canvas || typeof Chart === "undefined") return;
+
+  if(shiftChart) shiftChart.destroy();
+
+  shiftChart = new Chart(canvas,{
+    type:"bar",
+    data:{
+      labels:["เช้า","บ่าย","ดึก"],
+      datasets:[{
+        label:"ชั่วโมงเวร",
+        data:[dash.morningHours,dash.afternoonHours,dash.nightHours]
+      }]
+    },
+    options:{
+      responsive:true,
+      maintainAspectRatio:false
+    }
+  });
+}
+
+function renderEMSChart(dash){
+  const canvas = document.getElementById("emsChart");
+  if(!canvas || typeof Chart === "undefined") return;
+
+  if(emsChart) emsChart.destroy();
+
+  const ems = dash.totalEMS;
+  const other = Math.max(dash.totalRecords-ems,0);
+
+  emsChart = new Chart(canvas,{
+    type:"doughnut",
+    data:{
+      labels:["EMS","ทั่วไป"],
+      datasets:[{
+        data:[ems,other]
+      }]
+    },
+    options:{
+      responsive:true,
+      maintainAspectRatio:false
+    }
+  });
 }
 
 /* ---------------- Helpers ---------------- */
