@@ -392,7 +392,7 @@ function renderSummary(){
 
   body.innerHTML="";
 
-  records.forEach(r=>{
+  records.forEach((r,index)=>{
 
     body.innerHTML+=`
       <tr>
@@ -415,18 +415,16 @@ function renderSummary(){
 
         <td>${r.supervisor||"-"}</td>
 <td class="action-cell">
-    <button class="edit-btn" onclick="editRecord(${APP.records.indexOf(r)})">
-        <i class="fa-solid fa-pen"></i>
-    </button>
+        <button class="edit-btn" onclick="editRecord(${index})">
+          <i class="fa-solid fa-pen"></i>
+        </button>
 
-    <button class="delete-btn" onclick="deleteRecord(${APP.records.indexOf(r)})">
-        <i class="fa-solid fa-trash"></i>
-    </button>
-</td>
-
-      </tr>`;
-
-  });
+        <button class="delete-btn" onclick="deleteRecord(${index})">
+          <i class="fa-solid fa-trash"></i>
+        </button>
+      </td>
+    </tr>`;
+});
 
 }
 
@@ -440,11 +438,11 @@ function editRecord(index){
     document.querySelector('[data-page="formPage"]').click();
 
     document.getElementById("staffSelect").value = r.staff || "";
-    document.getElementById("alias").value = r.alias || "";
+    document.getElementById("staffOther").value = r.alias || "";
     document.getElementById("dutyDate").value = r.date || "";
     document.getElementById("dutyType").value = r.dutyType || "";
-    document.getElementById("startTime").value = r.timeStart || "";
-    document.getElementById("endTime").value = r.timeEnd || "";
+    document.getElementById("timeStart").value = r.timeStart || "";
+    document.getElementById("timeEnd").value = r.timeEnd || "";
     document.getElementById("supervisorSelect").value = r.supervisor || "";
     document.getElementById("hourValue").value = r.hours || 2;
     document.getElementById("shiftValue").value = r.shift || "เช้า";
