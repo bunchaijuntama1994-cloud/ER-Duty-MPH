@@ -37,10 +37,13 @@ STAFF:[
 /* -----------------------------
    Local Storage
 ------------------------------ */
-
+function getStorageKey(){
+  const user = JSON.parse(sessionStorage.getItem("currentUser")) || {};
+  return `erDutyRecords_${user.username || "guest"}`;
+}
 function getRecords(){
 
-const data=localStorage.getItem(APP.STORAGE_KEY);
+const data = localStorage.getItem(getStorageKey());
 
 if(!data) return [];
 
@@ -59,11 +62,8 @@ return [];
 function saveRecords(records){
 
 localStorage.setItem(
-
-APP.STORAGE_KEY,
-
-JSON.stringify(records)
-
+  getStorageKey(),
+  JSON.stringify(records)
 );
 
 }
