@@ -339,7 +339,17 @@ async function saveForm(e){
 
   };
 
-  await saveDuty(record);
+  if(editingIndex===-1){
+
+    await saveDuty(record);
+
+}else{
+
+    updateRecord(editingIndex,record);
+
+    editingIndex=-1;
+
+}
 
   alert("บันทึกข้อมูลเรียบร้อย");
 
@@ -422,9 +432,11 @@ function renderSummary(){
 
 function editRecord(index){
 
-    const r = APP.records[index];
+    const r = getRecords()[index];
     if(!r) return;
 
+    editingIndex = r.id;
+   
     document.querySelector('[data-page="formPage"]').click();
 
     document.getElementById("staffSelect").value = r.staff || "";
@@ -434,18 +446,29 @@ function editRecord(index){
     document.getElementById("startTime").value = r.timeStart || "";
     document.getElementById("endTime").value = r.timeEnd || "";
     document.getElementById("supervisorSelect").value = r.supervisor || "";
+    document.getElementById("hourValue").value = r.hours || 2;
+    document.getElementById("shiftValue").value = r.shift || "เช้า";
+
+    document.querySelectorAll(".hour-btn").forEach(btn=>btn.classList.remove("active"));
+    document.querySelector(`[data-hour="${r.hours}"]`)?.classList.add("active");
+
+    document.querySelectorAll(".shift-btn").forEach(btn=>btn.classList.remove("active"));
+    document.querySelector(`[data-shift="${r.shift}"]`)?.classList.add("active");
 }
 
 function deleteRecord(index){
 
     if(!confirm("ต้องการลบรายการนี้ใช่หรือไม่?")) return;
 
-    APP.records.splice(index,1);
+    const records = getRecords();
 
-    saveData();
-    refreshDashboard();
-    renderSummary();
-    renderPrintTable();
+records.splice(index,1);
+
+saveRecords(records);
+
+refreshDashboard();
+renderSummary();
+renderPrintTable();
 }
 /* ---------------- Print Table ---------------- */
 
