@@ -356,7 +356,7 @@ placeholder="เช่น อุบัติเหตุรถจักรยา
 
 <!-- เวลา -->
 
-<section class="form-section">
+<section id="timeSection" class="form-section">
 
 <h3><i class="fa-solid fa-clock"></i> เวลาปฏิบัติหน้าที่</h3>
 
@@ -376,7 +376,7 @@ placeholder="เช่น อุบัติเหตุรถจักรยา
 
 <!-- ชั่วโมง -->
 
-<section class="form-section">
+<section id="hourSection" class="form-section">
 
 <h3><i class="fa-solid fa-hourglass-half"></i> จำนวนชั่วโมง</h3>
 
@@ -704,7 +704,22 @@ if(todayText){
 todayText.textContent=text;
 
 }
+// ===== ซ่อน/แสดง เวลาและชั่วโมง =====
 
+const dutyType = document.getElementById("dutyType");
+const timeSection = document.getElementById("timeSection");
+const hourSection = document.getElementById("hourSection");
+
+function toggleDutyFields() {
+  const hide = dutyType.value === "ไม่ระบุ";
+
+  timeSection.style.display = hide ? "none" : "block";
+  hourSection.style.display = hide ? "none" : "block";
+}
+
+toggleDutyFields();
+
+dutyType.addEventListener("change", toggleDutyFields);
 });
 
 </script>
