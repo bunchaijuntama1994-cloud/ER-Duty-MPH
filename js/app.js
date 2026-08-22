@@ -148,9 +148,30 @@ APP.STAFF.forEach(name=>{
   document
     .getElementById("dutyForm")
     .addEventListener("submit",saveForm);
-
+document
+    .getElementById("clearBtn")
+    .addEventListener("click", clearForm);
 }
 
+function clearForm(){
+
+    document.getElementById("dutyForm").reset();
+
+    document.getElementById("dutyDate").value =
+        new Date().toISOString().split("T")[0];
+
+    document.querySelectorAll(".hour-btn")
+        .forEach(btn=>btn.classList.remove("active"));
+
+    const hour2=document.querySelector('[data-hour="2"]');
+    if(hour2) hour2.classList.add("active");
+
+    document.querySelectorAll(".shift-btn")
+        .forEach(btn=>btn.classList.remove("active"));
+
+    const morning=document.querySelector('[data-shift="เช้า"]');
+    if(morning) morning.classList.add("active");
+}
 /* ---------------- Buttons ---------------- */
 
 function initButtons(){
