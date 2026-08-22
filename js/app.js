@@ -364,7 +364,24 @@ const record = {
   renderPrintTable();
 
 }
+function updateRecord(id, newData) {
+  const records = getRecords();
 
+  const index = records.findIndex(r => r.id === id);
+
+  if (index === -1) {
+    alert("ไม่พบรายการที่ต้องการแก้ไข");
+    return;
+  }
+
+  records[index] = {
+    ...records[index],
+    ...newData,
+    id: records[index].id
+  };
+
+  saveRecords(records);
+}
 /* ---------------- Summary ---------------- */
 
 function renderSummary(){
