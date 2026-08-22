@@ -22,6 +22,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function initNavigation(){
 
+document.getElementById("dashboardPage").classList.remove("hidden");
+document.querySelectorAll(".page").forEach(p=>{
+  if(p.id!=="dashboardPage") p.classList.add("hidden");
+}); 
   document.querySelectorAll(".nav-btn").forEach(btn=>{
 
     btn.addEventListener("click",()=>{
