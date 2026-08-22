@@ -13,7 +13,20 @@ document.addEventListener("DOMContentLoaded", () => {
   refreshDashboard();
   renderSummary();
   renderPrintTable();
+   
+  // ===== ซ่อน/แสดง เวลาและชั่วโมง =====
+  const dutyType = document.getElementById("dutyType");
+  const timeSection = document.getElementById("timeSection");
+  const hourSection = document.getElementById("hourSection");
 
+  function toggleDutyFields() {
+    const hide = dutyType.value === "ไม่ระบุ";
+    timeSection.style.display = hide ? "none" : "block";
+    hourSection.style.display = hide ? "none" : "block";
+  }
+
+  toggleDutyFields();
+  dutyType.addEventListener("change", toggleDutyFields);
 });
 
 /* ---------------- Navigation ---------------- */
