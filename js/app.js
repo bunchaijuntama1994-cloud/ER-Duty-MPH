@@ -261,6 +261,7 @@ function initSmartOT(){
   if(!dutyType || !shiftInput) return;
 
   function applyDefaultTime(){
+    return;
 
     const shift = shiftInput.value;
 
